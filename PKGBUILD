@@ -10,6 +10,7 @@ pkgdesc="High-performance HTTP accelerator"
 arch=('i686' 'x86_64')
 url="http://www.varnish-cache.org/"
 license=('BSD')
+makedepends=('git')
 depends=('ncurses' 'pcre' 'groff' 'libxslt' 'python-sphinx')
 backup=('etc/varnish.conf')
 provides=('varnish')
