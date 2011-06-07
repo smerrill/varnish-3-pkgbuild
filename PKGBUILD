@@ -3,37 +3,48 @@
 # Contributor: Roberto Alsina <ralsina@kde.org>
 # Contributor: Steven Merrill <steven.merrill@gmail.com>
 
-pkgname=varnish
-pkgver=3.0.0
-pkgrel=beta1
+pkgname=varnish-git
+pkgver=20110606
+pkgrel=1
 pkgdesc="High-performance HTTP accelerator"
 arch=('i686' 'x86_64')
 url="http://www.varnish-cache.org/"
 license=('BSD')
-depends=('ncurses' 'pcre')
+depends=('ncurses' 'pcre' 'groff' 'libxslt')
 backup=('etc/varnish.conf')
-install=$pkgname.install
+provides=('varnish')
+conflicts=('varnish')
+install=varnish.install
 options=('!libtool')
-source=(http://repo.varnish-cache.org/source/$pkgname-$pkgver-$pkgrel.tar.gz
-        $pkgname.conf
-        $pkgname.init
-        $pkgname.runit
-        $pkgname.log.runit)
-sha256sums=('43693d1198d48baa07ec78fd6e5fc59d2e2977cdb8421f280f8f759370bbf2fa'
-            '46701975e6d975966316b7d253ca6310544523a1ba57400441f538cb82e17962'
-            'b28a1acc6ea272c50eca928166ed2f85e80182eec370c35e98c955dc1bd4deca'
-            '0bcbe89585fc5c83fa4a47fbe7d62443e2c3a97aa7bf9df10a1bc59e78060cbf'
-            '18318e89528f70292c703340c9e209d96edbe8c36cb9c59fe1fa08c48d9fc7dd')
+
+_gitroot="git://git.varnish-cache.org/varnish-cache"
+_gitname="varnish"
 
 build() {
-  cd ${srcdir}/$pkgname-$pkgver-$pkgrel
+  cd "$srcdir"
+  msg "Connecting to git server...."
 
+  if [[ -d $_gitname ]] ; then
+    cd $_gitname && git pull origin
+    msg "The local files are updated."
+  else
+    git clone $_gitroot $_gitname
+  fi
+
+  msg "git checkout done or server timeout"
+  msg "Starting make..."
+
+  rm -rf "$srcdir/$_gitname-build"
+  git clone "$srcdir/$_gitname" "$srcdir/$_gitname-build"
+  cd "$srcdir/$_gitname-build"
+
+  ./autogen.sh
   ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
   make
 }
 
 package() {
-  cd ${srcdir}/$pkgname-$pkgver-$pkgrel
+  cd "$srcdir/$_gitname-build"
 
   make DESTDIR=${pkgdir} install
 
