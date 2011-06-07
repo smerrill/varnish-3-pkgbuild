@@ -14,10 +14,10 @@ depends=('ncurses' 'pcre')
 backup=('etc/varnish.conf')
 install=$pkgname.install
 options=('!libtool')
-source=(http://repo.varnish-cache.org/source/$pkgname-$pkgver-$pkgrel.tar.gz \
-        $pkgname.conf \
-        $pkgname.init \
-        $pkgname.runit \
+source=(http://repo.varnish-cache.org/source/$pkgname-$pkgver-$pkgrel.tar.gz
+        $pkgname.conf
+        $pkgname.init
+        $pkgname.runit
         $pkgname.log.runit)
 sha256sums=('43693d1198d48baa07ec78fd6e5fc59d2e2977cdb8421f280f8f759370bbf2fa'
             '46701975e6d975966316b7d253ca6310544523a1ba57400441f538cb82e17962'
