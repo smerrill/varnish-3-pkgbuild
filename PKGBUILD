@@ -41,7 +41,7 @@ package() {
   install -D -m755 ${srcdir}/$pkgname.init ${pkgdir}/etc/rc.d/$pkgname
   install -D -m755 ${srcdir}/$pkgname.runit ${pkgdir}/etc/sv/$pkgname/run
   install -D -m755 ${srcdir}/$pkgname.log.runit ${pkgdir}/etc/sv/$pkgname/log/run
-  install -D -m644 ${srcdir}/$pkgname.conf ${pkgdir}/etc/$pkgname.conf
+  install -D -m644 ${srcdir}/$pkgname.conf ${pkgdir}/etc/$pkgname/$pkgname.conf
 
 #license
   install -D -m644 LICENSE ${pkgdir}/usr/share/licenses/$pkgname/LICENSE

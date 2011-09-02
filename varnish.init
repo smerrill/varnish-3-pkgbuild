@@ -4,7 +4,7 @@
 . /etc/rc.conf
 . /etc/rc.d/functions
 
-. /etc/varnish.conf
+. /etc/varnish/varnish.conf
 
 PID=`pidof %PPID /usr/sbin/varnishd` 
 
