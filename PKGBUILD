@@ -21,10 +21,9 @@ source=(http://repo.varnish-cache.org/source/$pkgname-$pkgver.tar.gz
         $pkgname.log.runit)
 sha256sums=('385807737777a392520c5334bb114f9fc0e5f8dbf5cc48b420baf5b0478eb279'
             '46701975e6d975966316b7d253ca6310544523a1ba57400441f538cb82e17962'
-            'b28a1acc6ea272c50eca928166ed2f85e80182eec370c35e98c955dc1bd4deca'
-            '0bcbe89585fc5c83fa4a47fbe7d62443e2c3a97aa7bf9df10a1bc59e78060cbf'
+            'cd3b9cdaa9276aa314cedfbd57a3592163aeb002b4cdac6abfe523ae60dec88f'
+            'a09837991e156cf60bd6d8d6ff9fc3fa279c6001e783e531a4d7364db7f3d099'
             '18318e89528f70292c703340c9e209d96edbe8c36cb9c59fe1fa08c48d9fc7dd')
-
 build() {
   cd ${srcdir}/$pkgname-$pkgver
 
